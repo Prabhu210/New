@@ -1,19 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>AcvissWebApplication</groupId>
+    <artifactId>AcvissWebApplication</artifactId>
+    <version>1.8-SNAPSHOT</version>
 
-  <groupId>Java1</groupId>
-  <artifactId>Demo1</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+    <properties>
+        <Mainurl>acvissurlvalue</Mainurl>
+        <Username>usernamevalue</Username>
 
-  <name>Demo1</name>
-  <url>http://maven.apache.org</url>
+        <Password>Passwordvalue</Password>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
+    </properties>
+
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
@@ -21,15 +24,6 @@
             <artifactId>selenium-java</artifactId>
             <version>4.14.1</version>
         </dependency>
-        
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring -->
-<dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring</artifactId>
-    <version>5.3.31</version>
-    <type>pom</type>
-</dependency>
-
 
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -72,7 +66,8 @@
             <artifactId>webdrivermanager</artifactId>
             <version>5.5.3</version>
         </dependency>
-        
+
+
         <!-- https://mvnrepository.com/artifact/com.relevantcodes/extentreports-->
         <dependency>
             <groupId>com.relevantcodes</groupId>
@@ -122,7 +117,7 @@
             <artifactId>allure-testng</artifactId>
             <version>2.24.0</version>
         </dependency>
-     
+
 
         <dependency>
             <groupId>org.apache.maven.plugins</groupId>
@@ -131,29 +126,41 @@
             <type>maven-plugin</type>
         </dependency>
 
-    </dependencies>     
-    <build>
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-install-plugin</artifactId>
-            <version>2.4</version>
-            <executions>
-                <execution>
-                    <id>install-file</id>
-                    <phase>install</phase>
-                    <goals>
-                        <goal>install-file</goal>
-                    </goals>
-                    <configuration>
-                        <file>C:\Users\Acviss\git\repository5\Task\redis app\redisapp.jar</file>
-                        <!-- Other configuration parameters if needed -->
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-</build>
+    </dependencies>
 
-       
+    <build>
+
+
+        <testResources>
+            <testResource>
+                <directory>src/test/resources</directory>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <plugin>
+
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M5</version>
+                <configuration>
+                    <headless>true</headless>
+                    <argLine>-Dwebdriver.headless=true</argLine>
+                    <suiteXmlFiles>${filename}</suiteXmlFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
 </project>
