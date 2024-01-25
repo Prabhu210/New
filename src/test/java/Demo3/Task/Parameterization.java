@@ -59,9 +59,9 @@ public class Parameterization {
 	}
 	//prabhu
 	//master
-	private void master() {
-		// TODO Auto-generated method stub
-
+	@Test
+	public void testName() throws Exception {
+		
 	}
 	@Test(priority=3)
 	void test() throws InterruptedException
